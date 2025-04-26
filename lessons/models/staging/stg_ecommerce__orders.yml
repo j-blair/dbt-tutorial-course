@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: stg_ecommerce__orders
+    description: >
+      "Table of orders from the ecommerce platform, containing details about each order placed by users."
+    
+      "Include > for multi-line entries. Another line of description for the model, if needed"
+    columns:
+      - name: order_id
+        data_type: int64
+        description: ""
+        tests:
+          - unique
+          - not_null
+
+      - name: user_id
+        data_type: int64
+        description: ""
+
+      - name: status
+        data_type: string
+        description: ""
+        tests:
+          - accepted_values:
+              name: valid_order_status
+              values: 
+                - Created
+                - Returned
+                - Shipped
+                - Delivered
+                - Processing
+
+      - name: created_at
+        data_type: timestamp
+        description: ""
+
+      - name: returned_at
+        data_type: timestamp
+        description: ""
+
+      - name: shipped_at
+        data_type: timestamp
+        description: ""
+
+      - name: delivered_at
+        data_type: timestamp
+        description: ""
+
+      - name: num_of_item
+        data_type: int64
+        description: ""
