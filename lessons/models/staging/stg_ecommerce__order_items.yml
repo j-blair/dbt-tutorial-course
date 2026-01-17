@@ -11,6 +11,11 @@ models:
       - name: order_id
         data_type: int64
         description: ""
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_ecommerce__orders')
+              field: order_id
 
       - name: user_id
         data_type: int64

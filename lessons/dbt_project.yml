@@ -32,3 +32,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   lessons:
       +materialized: table # Default to table materialisation, only overwritten in model files if specified
+      +persist_docs:
+        relation: true
+        columns: true
