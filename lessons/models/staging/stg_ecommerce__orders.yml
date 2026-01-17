@@ -23,7 +23,7 @@ models:
         description: ""
         tests:
           - accepted_values:
-              name: valid_order_status
+              name: valid_order_status // this is a custom name for the test, will print in the test results
               values: 
                 - Created
                 - Returned

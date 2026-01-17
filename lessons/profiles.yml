@@ -1,4 +1,4 @@
-answers: # this needs to match the profile: in your dbt_project.yml file
+lessons: # this needs to match the profile: in your dbt_project.yml file
   target: dev # The default for any dbt commands
   outputs:
     dev:
