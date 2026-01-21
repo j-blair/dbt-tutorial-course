@@ -35,3 +35,11 @@ models:
       +persist_docs:
         relation: true
         columns: true
+      +hours_to_expiration: 168 # 7 days from creation
+
+# Config is relative to marts
+tests:
+  lessons:
+    +severity: warn  # Set default test severity to 'warn' for all tests in the lessons project 
+    #marts:
+      #+severity: error  # Override default test severity to 'error' for all tests in the marts directory
