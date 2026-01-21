@@ -3,6 +3,9 @@ version: 2
 models:
   - name: stg_ecommerce__products
     description: ""
+    # tests:
+    #   - dbt_utils.expression_is_true:
+    #       expression: "retail_price >= cost"
     columns:
       - name: product_id
         tests:
