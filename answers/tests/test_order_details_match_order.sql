@@ -7,7 +7,8 @@
     We could run multiple checks here (e.g. check only 1 user_id per order, or that the shipped_at timestamps
 	are all the same for a given order), but this is just an example of a custom test.
 */
-
+{{config(
+   severity='warn') }}
 WITH order_details AS (
     SELECT
         order_id,
