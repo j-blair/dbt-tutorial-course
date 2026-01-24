@@ -11,10 +11,14 @@ models:
         data_type: int64
         description: ""
         tests:
-          - unique
-          - not_null
+          - primary_key:
+              severity: error
+          # - unique
+          # - not_null
 
       - name: user_id
+        tests:
+          - not_null
         data_type: int64
         description: ""
 
@@ -32,21 +36,39 @@ models:
                 - Complete
 
       - name: created_at
+        tests:
+          - not_null
         data_type: timestamp
         description: ""
 
       - name: returned_at
+        tests:
+          - not_null:
+              where: "status = 'Returned'"
+          - dbt_utils.expression_is_true:
+              expression: ">= delivered_at" 
+              where: "delivered_at IS NOT NULL AND returned_at IS NOT NULL"
         data_type: timestamp
         description: ""
 
       - name: shipped_at
+        tests:
+          - not_null:
+              where: "delivered_at IS NOT NULL or status = 'Shipped'"
+          - dbt_utils.expression_is_true:
+              expression: ">= created_at"
+              where: "shipped_at IS NOT NULL AND created_at IS NOT NULL"
         data_type: timestamp
-        description: ""
+        description: "When order shipped"
 
       - name: delivered_at
         data_type: timestamp
         description: ""
 
-      - name: num_of_item
+      - name: num_items_ordered
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
         data_type: int64
         description: ""
